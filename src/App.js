@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
 
-function App() {
+import React,{useEffect,useState} from 'react';
+import Navigators from './config/Navigation/Navigtion';
+import './Screen/login.css'
+import HomePage from './Screen/HomePage';
+import Login from './Screen/Login';
+
+
+
+const App = () => {
+  let [islogin,setIslogon]=useState(false);
+  useEffect(()=>{
+    // localStorage.setItem('islogin',false)
+
+    setIslogon(localStorage.getItem('islogin'))
+    // alert(islogin)
+  },[islogin])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+     {/* <Navigators/> */}
+
+     {
+
+islogin!==null  || islogin? 
+
+<HomePage/>
+
+:
+<Login/>
+     }
     </div>
   );
-}
+};
 
 export default App;
